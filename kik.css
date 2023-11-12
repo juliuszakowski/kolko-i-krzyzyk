@@ -1,0 +1,56 @@
+body {
+    background-color: yellowgreen;
+background-image:url('tlokik.jpg');
+font-family: Comic Sans MS, Comic Sans, cursive;
+}
+
+.naglowek, audio{
+    display: inline-block;
+}
+
+.naglowek{
+font-size: 200%;
+padding-left: 40%;
+padding-right: 40%;
+color: #fa6400;
+}
+
+h1{
+    border: 7px solid blueviolet;
+}
+
+td{
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    font-size: 50px;
+    background-color: rgb(73, 0, 0);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.prawas, .gra, .lewas{
+    display: inline-block;
+}
+
+.lewas{
+    float: left;
+    text-align: center;
+    padding-left: 100px;
+}
+
+.prawas{
+    float: right;
+    text-align: center;
+    padding-right: 100px;
+}
+
+.gra{
+    margin-left: 22%;
+}
+
+h2{
+    color: chocolate;
+    border: 5px solid green;
+    width: auto; ;
+}
