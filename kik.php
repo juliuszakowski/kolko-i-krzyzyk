@@ -8,13 +8,11 @@
 </head>
 <body>
 
-
-
 <audio controls autoplay src='muzyka.mp3'></audio>
 
 <div class=naglowek>
 
-<h1>Kółko i krzyżyk</h1>
+<img src="naglowek.png" alt="" width="500" height="300">
 
 </div>
 

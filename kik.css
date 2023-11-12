@@ -9,27 +9,25 @@ font-family: Comic Sans MS, Comic Sans, cursive;
 }
 
 .naglowek{
+padding-top: 50px;
 font-size: 200%;
-padding-left: 40%;
-padding-right: 40%;
+padding-left: 30.5%;
+padding-right: 30%;
 color: #fa6400;
 }
 
-h1{
-    border: 7px solid blueviolet;
-}
-
 td{
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     border: 1px solid black;
     font-size: 50px;
     background-color: #FFFCF0;
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
 }
 
 .prawas, .gra, .lewas{
+    padding-top: 30px;
     display: inline-block;
 }
 
@@ -46,7 +44,7 @@ td{
 }
 
 .gra{
-    margin-left: 22%;
+    margin-left: 21%;
 }
 
 h2{
