@@ -37,9 +37,21 @@
 <div class=gra>
 
 <table id=polagry>
-<tr> <td><img src="xkik.png" alt="" width="200" height="200"></td> <td></td> <td></td></tr>
-<tr> <td></td> <td><img src="xkik.png" alt="" width="200" height="200"></td> <td></td></tr>
-<tr> <td></td> <td></td> <td><img src="xkik.png" alt="" width="200" height="200"></td></tr>
+<tr>
+     <td><img src="xkik.png" alt="" width="200" height="200"></td> 
+     <td><img src="okik.png" alt="" width="200" height="200"></td> 
+     <td><img src="okik.png" alt="" width="200" height="200"></td>
+</tr>
+<tr>
+     <td><img src="okik.png" alt="" width="200" height="200"></td>
+     <td><img src="xkik.png" alt="" width="200" height="200"></td> 
+     <td><img src="okik.png" alt="" width="200" height="200"></td>
+</tr>
+<tr>
+     <td><img src="okik.png" alt="" width="200" height="200"></td>
+     <td><img src="okik.png" alt="" width="200" height="200"></td>
+     <td><img src="xkik.png" alt="" width="200" height="200"></td>
+</tr>
 </table>
 
 </div>
