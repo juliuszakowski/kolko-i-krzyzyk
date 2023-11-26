@@ -68,6 +68,8 @@
         gameMode = mode;
         gameActive = true;
         currentPlayer = 'X'; // Domyślnie zaczyna X
+        startTime = new Date();
+        updateTimer();
         clearBoard();
 
         if (mode === 'computer' && currentPlayer === 'O') {
