@@ -10,59 +10,174 @@
 
 <audio controls autoplay src='muzyka.mp3'></audio>
 
-<div class=naglowek>
-
-<img src="naglowek.png" alt="" width="500" height="300">
-
+<div class="naglowek">
+    <img src="naglowek.png" alt="" width="500" height="300">
 </div>
 
-<div class=lewas>
+<div class="lewas">
+    <h2>Wybierz tryb gry</h2>
+    <button onclick="startGame('computer')"> z komputerem </button>
+    <button onclick="startGame('multiplayer')"> z innym graczem </button>
+    <button onclick="startGame('network')"> sieciówka </button>
 
-<h2>Wybierz tryb gry</h2>
-<button> z komputerem </button>
-<button> z innym graczem </button>
-<button> sieciówka </button>
+    <h2>Wybierz wojownika</h2>
+    <button onclick="chooseSymbol('X')">X</button>
+    <button onclick="chooseSymbol('O')">O</button>
 
-<h2>Wybierz wojownika</h2>
-<button>X</button>
-<button>O</button>
+    <h2>Wyczyść planszę</h2>
+    <button onclick="clearBoard()">Wyczyść</button>
 
-<h2>Wyczyść planszę</h2>
-<button>Wyczyść</button>
-
+    <p id="instructions">Wybierz tryb gry, wojownika i rozpocznij rozgrywkę</p>
 </div>
 
-<div class=gra>
-
-<table id=polagry>
-<tr>
-     <td><img src="xkik.png" alt="" width="200" height="200"></td> 
-     <td><img src="okik.png" alt="" width="200" height="200"></td> 
-     <td><img src="okik.png" alt="" width="200" height="200"></td>
-</tr>
-<tr>
-     <td><img src="okik.png" alt="" width="200" height="200"></td>
-     <td><img src="xkik.png" alt="" width="200" height="200"></td> 
-     <td><img src="okik.png" alt="" width="200" height="200"></td>
-</tr>
-<tr>
-     <td><img src="okik.png" alt="" width="200" height="200"></td>
-     <td><img src="okik.png" alt="" width="200" height="200"></td>
-     <td><img src="xkik.png" alt="" width="200" height="200"></td>
-</tr>
-</table>
-
+<div class="gra">
+    <table id="polagry">
+        <tr>
+             <td onclick="makeMove(0, 0)"></td> 
+             <td onclick="makeMove(0, 1)"></td> 
+             <td onclick="makeMove(0, 2)"></td>
+        </tr>
+        <tr>
+             <td onclick="makeMove(1, 0)"></td>
+             <td onclick="makeMove(1, 1)"></td> 
+             <td onclick="makeMove(1, 2)"></td>
+        </tr>
+        <tr>
+             <td onclick="makeMove(2, 0)"></td>
+             <td onclick="makeMove(2, 1)"></td>
+             <td onclick="makeMove(2, 2)"></td>
+        </tr>
+    </table>
 </div>
 
+<div class="prawas">
+    <h2>czasomierz/zegar</h2>
 
-
-<div class=prawas>
-
-<h2>czasomierz/zegar</h2>
-
-<h2>historia wyników</h2>
-<img src="kratos.gif" alt="">
+    <h2>historia wyników</h2>
+    <img src="kratos.gif" alt="">
 </div>
+
+<script>
+    let currentPlayer;
+    let board = ['', '', '', '', '', '', '', '', ''];
+    let gameActive = false;
+    let gameMode;
+
+    function startGame(mode) {
+        console.log(`Rozpoczęto grę w trybie: ${mode}`);
+        gameMode = mode;
+        gameActive = true;
+        currentPlayer = 'X'; // Domyślnie zaczyna X
+        clearBoard();
+
+        if (mode === 'computer' && currentPlayer === 'O') {
+            makeComputerMove();
+        }
+    }
+
+    function chooseSymbol(symbol) {
+        console.log(`Wybrano symbol: ${symbol}`);
+        currentPlayer = symbol;
+
+        if (gameMode === 'computer' && currentPlayer === 'O') {
+            makeComputerMove();
+        }
+    }
+
+    function makeMove(row, col) {
+        if (!gameActive || board[row * 3 + col] !== '') {
+            return;
+        }
+
+        board[row * 3 + col] = currentPlayer;
+        renderBoard();
+
+        const winner = checkWinner();
+        const draw = checkDraw();
+
+        if (winner) {
+            console.log(`Gracz ${winner} wygrywa!`);
+            gameActive = false;
+            document.getElementById('instructions').innerText = `Gracz ${winner} wygrywa! Kliknij "Wyczyść planszę", aby zagrać ponownie.`;
+        } else if (draw) {
+            console.log('Remis!');
+            gameActive = false;
+            document.getElementById('instructions').innerText = 'Remis! Kliknij "Wyczyść planszę", aby zagrać ponownie.';
+        } else {
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+
+            if (gameMode === 'computer' && currentPlayer === 'O') {
+                makeComputerMove();
+            }
+        }
+    }
+
+    function makeComputerMove() {
+        const emptyCells = board.reduce((acc, cell, index) => {
+            if (cell === '') {
+                acc.push(index);
+            }
+            return acc;
+        }, []);
+
+        if (emptyCells.length > 0) {
+            const randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            const row = Math.floor(randomIndex / 3);
+            const col = randomIndex % 3;
+
+            setTimeout(() => {
+                makeMove(row, col);
+            }, 500); // Opóźnienie, aby zobaczyć ruch komputera
+        }
+    }
+
+    function clearBoard() {
+        console.log('Wyczyszczono planszę');
+        board = ['', '', '', '', '', '', '', '', ''];
+        renderBoard();
+
+        if (gameMode === 'computer' && currentPlayer === 'O') {
+            makeComputerMove();
+        }
+
+        document.getElementById('instructions').innerText = 'Kliknij pole, aby postawić swój symbol.';
+    }
+
+    function checkWinner() {
+        const winPatterns = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+            [0, 4, 8], [2, 4, 6]             // Diagonals
+        ];
+
+        for (const pattern of winPatterns) {
+            const [a, b, c] = pattern;
+            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                return board[a];
+            }
+        }
+
+        return null;
+    }
+
+    function checkDraw() {
+        return !board.includes('');
+    }
+
+    function renderBoard() {
+        const cells = document.querySelectorAll('#polagry td');
+        cells.forEach((cell, index) => {
+            const img = document.createElement('img');
+            img.src = board[index] === 'X' ? 'xkik.png' : board[index] === 'O' ? 'okik.png' : '';
+            img.alt = board[index];
+            img.style.width = '200px';
+            img.style.height = '200px';
+
+            cell.innerHTML = '';
+            cell.appendChild(img);
+        });
+    }
+</script>
 
 </body>
 </html>
