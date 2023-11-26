@@ -11,7 +11,7 @@ font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, O
 .naglowek{
 padding-top: 50px;
 font-size: 200%;
-padding-left: 30.5%;
+padding-left: 26%;
 padding-right: 30%;
 color: #fa6400;
 }
@@ -40,11 +40,10 @@ td{
 .prawas{
     float: right;
     text-align: center;
-    padding-right: 10%;
 }
 
 .gra{
-    margin-left: 15%;
+    margin-left: 9%;
 }
 
 h2{
@@ -53,6 +52,12 @@ h2{
     width: auto; ;
 }
 p{
+    background-color:darkgreen ;
+    color: rgb(42, 136, 165);
+    font-size: 30px;
+}
+
+tr{
     background-color:darkgreen ;
     color: rgb(42, 136, 165);
     font-size: 30px;
