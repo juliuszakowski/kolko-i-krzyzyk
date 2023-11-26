@@ -26,8 +26,7 @@
 
     <h2>Wyczyść planszę</h2> <!-- czyszczenie planszy -->
     <button onclick="clearBoard()">Wyczyść</button>
-
-    <p id="instructions">Wybierz tryb gry, wojownika i rozpocznij rozgrywkę</p>
+    <p id="instructions"> <h2>Wybierz tryb gry, wojownika i rozpocznij rozgrywkę </h2> </p>
 </div>
 
 <div class="gra">
@@ -51,10 +50,8 @@
 </div>
 
 <div class="prawas">
-    <h2>czasomierz/zegar</h2>
+    <h2>zegar</h2>
 <p id="timer">Czas: 00:00</p>
-    <h2>historia wyników</h2>
-    <img src="kratos.gif" alt="">
 </div>
 
 <script>
