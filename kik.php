@@ -114,7 +114,7 @@
             console.log(`Gracz ${winner} wygrywa!`);
              updateScore(winner);
             gameActive = false;
-            document.getElementById('instructions').innerText = `Gracz ${winner} wygrywa! Kliknij "Wyczyść planszę", aby zagrać ponownie.`;
+            document.getElementById('instructions').innerText = `Gracz ${winner} wygrywa! Kliknij "Wyczyść", aby zagrać ponownie.`;
         } else if (draw) {
             console.log('Remis!');
             draws++;

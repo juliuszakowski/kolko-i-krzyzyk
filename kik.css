@@ -43,7 +43,8 @@ td{
 }
 
 .gra{
-    margin-left: 9%;
+    padding-left: 8%;
+    float: left;
 }
 
 h2{
@@ -54,7 +55,7 @@ h2{
 p{
     background-color:darkgreen ;
     color: rgb(42, 136, 165);
-    font-size: 30px;
+    font-size: 20px;
 }
 
 tr{
