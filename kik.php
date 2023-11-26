@@ -8,23 +8,23 @@
 </head>
 <body>
 
-<audio controls autoplay src='muzyka.mp3'></audio>
+<audio controls autoplay src='muzyka.mp3'></audio> <!-- muza -->
 
 <div class="naglowek">
     <img src="naglowek.png" alt="" width="500" height="300">
 </div>
 
 <div class="lewas">
-    <h2>Wybierz tryb gry</h2>
+    <h2>Wybierz tryb gry</h2> <!-- wybierasz tryb -->
     <button onclick="startGame('computer')"> z komputerem </button>
     <button onclick="startGame('multiplayer')"> z innym graczem </button>
     <button onclick="startGame('network')"> sieciówka </button>
 
-    <h2>Wybierz wojownika</h2>
+    <h2>Wybierz wojownika</h2> <!-- wybierasz X albo O -->
     <button onclick="chooseSymbol('X')">X</button>
     <button onclick="chooseSymbol('O')">O</button>
 
-    <h2>Wyczyść planszę</h2>
+    <h2>Wyczyść planszę</h2> <!-- czyszczenie planszy -->
     <button onclick="clearBoard()">Wyczyść</button>
 
     <p id="instructions">Wybierz tryb gry, wojownika i rozpocznij rozgrywkę</p>
@@ -37,7 +37,7 @@
              <td onclick="makeMove(0, 1)"></td> 
              <td onclick="makeMove(0, 2)"></td>
         </tr>
-        <tr>
+        <tr>                                                     <!-- zaznaczanie pola -->
              <td onclick="makeMove(1, 0)"></td>
              <td onclick="makeMove(1, 1)"></td> 
              <td onclick="makeMove(1, 2)"></td>
@@ -52,7 +52,7 @@
 
 <div class="prawas">
     <h2>czasomierz/zegar</h2>
-
+<p id="timer">Czas: 00:00</p>
     <h2>historia wyników</h2>
     <img src="kratos.gif" alt="">
 </div>
@@ -176,6 +176,16 @@
             cell.innerHTML = '';
             cell.appendChild(img);
         });
+    }
+    function updateTimer() {
+        const currentTime = new Date();
+        const elapsedSeconds = Math.floor((currentTime - startTime) / 1000);
+        const minutes = Math.floor(elapsedSeconds / 60);
+        const seconds = elapsedSeconds % 60;
+        const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+        document.getElementById('timer').innerText = `Czas: ${formattedTime}`;
+        setTimeout(updateTimer, 1000); // Aktualizacja co sekundę
     }
 </script>
 
