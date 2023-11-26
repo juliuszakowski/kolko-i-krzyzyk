@@ -52,6 +52,20 @@
 <div class="prawas">
     <h2>zegar</h2>
 <p id="timer">Czas: 00:00</p>
+
+<h2>historia wyników</h2>
+<table id="scoreboard">
+    <tr>
+        <th>X</th>
+        <th>O</th>
+        <th>Remisy</th>
+    </tr>
+    <tr>
+        <td id="xWins">0</td>
+        <td id="oWins">0</td>
+        <td id="draws">0</td>
+    </tr>
+</table>
 </div>
 
 <script>
@@ -59,7 +73,9 @@
     let board = ['', '', '', '', '', '', '', '', ''];
     let gameActive = false;
     let gameMode;
-
+    let xWins = 0;
+    let oWins = 0;
+    let draws = 0;
     function startGame(mode) {
         console.log(`Rozpoczęto grę w trybie: ${mode}`);
         gameMode = mode;
@@ -96,10 +112,13 @@
 
         if (winner) {
             console.log(`Gracz ${winner} wygrywa!`);
+             updateScore(winner);
             gameActive = false;
             document.getElementById('instructions').innerText = `Gracz ${winner} wygrywa! Kliknij "Wyczyść planszę", aby zagrać ponownie.`;
         } else if (draw) {
             console.log('Remis!');
+            draws++;
+            updateScore();
             gameActive = false;
             document.getElementById('instructions').innerText = 'Remis! Kliknij "Wyczyść planszę", aby zagrać ponownie.';
         } else {
@@ -185,6 +204,17 @@
 
         document.getElementById('timer').innerText = `Czas: ${formattedTime}`;
         setTimeout(updateTimer, 1000); // Aktualizacja co sekundę
+    }
+        function updateScore(winner) {
+        if (winner === 'X') {
+            xWins++;
+        } else if (winner === 'O') {
+            oWins++;
+        }
+
+        document.getElementById('xWins').innerText = xWins;
+        document.getElementById('oWins').innerText = oWins;
+        document.getElementById('draws').innerText = draws;
     }
 </script>
 
